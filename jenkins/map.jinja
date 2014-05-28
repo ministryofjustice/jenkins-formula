@@ -1,0 +1,10 @@
+{% set jenkins = salt['grains.filter_by']({
+    'Debian': {
+        'git': {
+            'email': 'jenkins@localhost',
+            'name': 'Your humble Jenkins',
+        }
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('jenkins', {})) %}
+

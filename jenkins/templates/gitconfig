@@ -1,0 +1,4 @@
+{% from "jenkins/map.jinja" import jenkins with context %}
+[user]
+	email = {{jenkins.git.email}}
+	name = {{jenkins.git.name}}
