@@ -12,7 +12,7 @@ jenkins module that:
 
 pillar example
 --------------
-It's good to extend client_max_body_size for nginx to allow for plugins installation
+It's good to extend `client_max_body_size` for nginx to allow for plugins installation. Note that if you are behing ssl termination layer than `client_max_body_size` will need to be updated there as well.
 
 
 ```yaml
@@ -27,7 +27,12 @@ apps:
   nginx:
     client_max_body_size: 1M
 
+#for load balancer
+nginx:
+  http_core_module_config:
+    client_max_body_size: 1M
 
+#only if you need to overwrite default
 github_ssh_fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
 
 
