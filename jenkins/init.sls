@@ -1,3 +1,7 @@
+include:
+  - .repo
+
+
 jenkins_deps:
   pkg.installed:
     - pkgs:

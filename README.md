@@ -12,6 +12,8 @@ jenkins module that:
 
 pillar example
 --------------
+It's good to extend client_max_body_size for nginx to allow for plugins installation
+
 
 ```yaml
 
@@ -19,6 +21,11 @@ pillar example
 jenkins:
   email: jenkins@localhost
   name: Your Jenkins
+
+
+apps:
+  nginx:
+    client_max_body_size: 1M
 
 
 github_ssh_fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
