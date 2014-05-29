@@ -1,6 +1,6 @@
 include:
   - .repo
-
+  - nginx
 
 jenkins_deps:
   pkg.installed:
@@ -116,6 +116,7 @@ ssh_github_jenkins:
       - service: nginx
     - require:
       - user: {{appslug}}
+      - pkg: nginx
     - context:
       appslug: {{appslug}}
       server_name: '{{appslug}}.*'
