@@ -51,6 +51,6 @@ deploy:
 extending jenkins
 -----------------
 
-Usually you will want you own set of packages pre-installed on jenkins.
+Usually you will want your own set of packages pre-installed on jenkins.
 To do so, just overwrite `jenkins/deps.sls` in your main `file_roots` folder.
 See salt docs [file_roots](http://docs.saltstack.com/en/latest/ref/file_server/file_roots.html)
