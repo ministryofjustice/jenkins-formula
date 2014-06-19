@@ -1,3 +1,5 @@
+{% from "jenkins/map.jinja" import jenkins with context %}
+
 include:
   - .repo
   - nginx
@@ -10,7 +12,7 @@ jenkins_deps:
 
 jenkins:
   user.present:
-    - home: /srv/jenkins
+    - home: {{ jenkins.home }}
     - shell: /bin/bash
     - makedirs: True
   pkg:
@@ -25,7 +27,7 @@ jenkins:
     - enable: True
 
 
-/srv/jenkins/.gitconfig:
+{{ jenkins.home }}/.gitconfig:
   file.managed:
     - user: jenkins
     - group: jenkins
@@ -53,7 +55,7 @@ jenkins:
       - service: jenkins
 
 
-/srv/jenkins/update-available-plugins.sh:
+{{ jenkins.home }}/update-available-plugins.sh:
   file:
     - managed
     - source: salt://jenkins/files/update-available-plugins.sh
@@ -69,10 +71,10 @@ jenkins:
       - service: jenkins
     - require:
       - user: jenkins
-      - file: /srv/jenkins/update-available-plugins.sh
+      - file: {{ jenkins.home }}/update-available-plugins.sh
 
 
-/srv/jenkins/.ssh:
+{{ jenkins.home }}/.ssh:
   file.directory:
     - user: jenkins
     - group: jenkins
@@ -81,7 +83,7 @@ jenkins:
       - user: jenkins
 
 
-/srv/jenkins/.ssh/{{ pillar.deploy.ssh.key_type }}:
+{{ jenkins.home }}/.ssh/{{ pillar.deploy.ssh.key_type }}:
   file.managed:
     - user: jenkins
     - group: jenkins
@@ -89,7 +91,7 @@ jenkins:
     - contents_pillar: deploy:ssh:privkey
     - require:
       - user: jenkins
-      - file: /srv/jenkins/.ssh
+      - file: {{ jenkins.home }}/.ssh
 
 
 ssh_github_jenkins:
@@ -100,7 +102,7 @@ ssh_github_jenkins:
     - fingerprint: {{ salt['pillar.get']('github_ssh_fingerprint', '16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48') }}
     - require:
       - user: jenkins
-      - file: /srv/jenkins/.ssh
+      - file: {{ jenkins.home }}/.ssh
 
 
 {% set appslug = 'jenkins' %}

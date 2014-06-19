@@ -1,3 +1,4 @@
+{% from "jenkins/map.jinja" import jenkins with context %}
 # defaults for jenkins continuous integration server
 
 # pulled in from the init script; makes things easier.
@@ -21,7 +22,7 @@ JENKINS_ROOT=/usr/share/jenkins
 JENKINS_WAR=/usr/share/jenkins/jenkins.war
 
 # jenkins home location
-JENKINS_HOME=/srv/jenkins
+JENKINS_HOME={{ jenkins.home }}
 
 # jenkins /run location
 JENKINS_RUN=/var/run/jenkins
