@@ -24,8 +24,9 @@ jenkins:
 
 
 apps:
-  nginx:
-    client_max_body_size: 1M
+  jenkins:
+    nginx:
+      client_max_body_size: 1M
 
 #for load balancer
 nginx:
