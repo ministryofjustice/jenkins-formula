@@ -1,2 +1,3 @@
 git@github.com:ministryofjustice/repos-formula.git
 git@github.com:ministryofjustice/nginx-formula.git
+git@github.com:ministryofjustice/logstash-formula.git
