@@ -1,6 +1,7 @@
 include:
   - .repo
   - nginx
+  - logstash.beaver
 
 jenkins_deps:
   pkg.installed:
