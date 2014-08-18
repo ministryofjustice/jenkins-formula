@@ -1,3 +1,7 @@
+## Version 1.0.4
+
+* Bug fix to correct missing formula requirement (logstash dependency).
+
 ## Version 1.0.3
 
 * Explicit nginx dependency
