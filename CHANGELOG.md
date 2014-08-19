@@ -1,3 +1,7 @@
+## Version 1.0.5
+
+* Logstash is not a formula requirement
+
 ## Version 1.0.4
 
 * Bug fix to correct missing formula requirement (logstash dependency).
