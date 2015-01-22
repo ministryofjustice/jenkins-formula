@@ -1,3 +1,7 @@
+## Unreleased
+
+* Don't require a deploy SSH private key in the pillar
+
 ## Version 1.0.6
 
 * Enable jenkins user to be added to other groups
