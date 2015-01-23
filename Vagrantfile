@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
     node.vm.synced_folder "../apparmor-formula/apparmor", "/srv/salt-formula/apparmor/"
     node.vm.synced_folder "../python-formula/python", "/srv/salt-formula/python/"
     node.vm.synced_folder "../repos-formula/repos", "/srv/salt-formula/repos/"
+    node.vm.synced_folder "../docker-formula/docker", "/srv/salt-formula/docker/"
 
     node.vm.box = the_box
     node.vm.hostname = "jenkins"
@@ -35,6 +36,6 @@ Vagrant.configure("2") do |config|
       salt.run_highstate = true
     end
 
-    node.vm.provision :shell inline: "usermod -aG docker jenkins"
+    node.vm.provision :shell, inline: "usermod -aG docker jenkins"
   end
 end

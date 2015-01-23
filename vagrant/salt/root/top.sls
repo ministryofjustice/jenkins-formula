@@ -5,4 +5,4 @@ base:
     - apparmor
     - python
     - firewall
-    #- bootstrap
+    - docker
