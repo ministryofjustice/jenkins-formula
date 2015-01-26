@@ -1,5 +1,10 @@
 {% set jenkins = salt['grains.filter_by']({
     'Debian': {
+        'nginx' : {
+            'upstream': 'localhost:8877',
+            'listen': '80',
+            'server_name': 'jenkins.*'
+        },
         'git': {
             'email': 'jenkins@localhost',
             'name': 'Your humble Jenkins',
