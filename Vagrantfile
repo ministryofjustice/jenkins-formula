@@ -4,22 +4,28 @@ boxes = {
   '12.04' => 'hashicorp/precise64',
   '14.04' => 'puppetlabs/ubuntu-14.04-64-nocm',
 }
-the_box = boxes[ ENV.fetch('UBUNTU', '12.04') ]
+the_box = boxes[ ENV.fetch('UBUNTU', '14.04') ]
+dynamic_dir = ['_modules', '_grains', '_renderers', '_returners', '_states']
+dev_formula = ['jenkins','nginx','logstash','firewall','bootstrap','apparmor','python','repos','docker']
 
 Vagrant.configure("2") do |config|
   config.vm.define "jenkins" do |node|
     # mount salt required folders
+    # This loop takes care of dynamic modules states etc.
+    # You need to vagrant provision when you create new states
+    # thereafter the changes are synced
+    dev_formula.each do |f|
+      node.vm.synced_folder "../#{f}-formula/#{f}/", "/srv/salt/#{f}"
+      dynamic_dir.each do |ddir|
+        if File.directory?("../#{f}-formula/#{ddir}")
+          node.vm.synced_folder "../#{f}-formula/#{ddir}/", "/srv/salt-dynamic/#{f}-#{ddir}"
+          node.vm.provision :shell,
+            inline: "mkdir -p /srv/salt/#{ddir} && for f in /srv/salt-dynamic/#{f}-#{ddir}/*; do ln -sf $f /srv/salt/#{ddir}; done"
+        end
+      end
+    end
     node.vm.synced_folder "vagrant/salt/root", "/srv/salt/"
     node.vm.synced_folder "vagrant/salt/pillar", "/srv/pillar/"
-    node.vm.synced_folder "jenkins", "/srv/salt-formula/jenkins/"
-    node.vm.synced_folder "../nginx-formula/nginx", "/srv/salt-formula/nginx/"
-    node.vm.synced_folder "../logstash-formula/logstash", "/srv/salt-formula/logstash/"
-    node.vm.synced_folder "../firewall-formula/firewall", "/srv/salt-formula/firewall/"
-    node.vm.synced_folder "../bootstrap-formula/bootstrap", "/srv/salt-formula/bootstrap/"
-    node.vm.synced_folder "../apparmor-formula/apparmor", "/srv/salt-formula/apparmor/"
-    node.vm.synced_folder "../python-formula/python", "/srv/salt-formula/python/"
-    node.vm.synced_folder "../repos-formula/repos", "/srv/salt-formula/repos/"
-    node.vm.synced_folder "../docker-formula/docker", "/srv/salt-formula/docker/"
 
     node.vm.box = the_box
     node.vm.hostname = "jenkins"
