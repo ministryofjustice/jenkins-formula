@@ -1,8 +1,10 @@
 {% from "jenkins/map.jinja" import jenkins, deploy with context %}
 include:
+  - repos
   - .repo
   - nginx
   - logstash.beaver
+  - .plugins
 
 jenkins_deps:
   pkg.installed:
