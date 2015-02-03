@@ -1,3 +1,4 @@
+{% from "jenkins/map.jinja" import jenkins with context %}
 include:
   - .repo
   - nginx
@@ -14,6 +15,9 @@ jenkins:
     - home: /srv/jenkins
     - shell: /bin/bash
     - makedirs: True
+{% if jenkins.optional_groups %}
+    - optional_groups: {{jenkins.optional_groups}}
+{% endif %}
   pkg:
     - installed
     - require:
