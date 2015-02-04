@@ -12,6 +12,17 @@ log = logging.getLogger(__name__)
 def plugin_installed(name,
             version=None,
             jenkins_url="http://localhost:8877"):
+    '''
+    Enforces that a jenkins plugin is installed and optionally at
+    the correct version.
+
+    name
+        The shortname of the jenkins plugin
+    version
+        The version of the plugin that should be installed
+    jenkins_url
+        The url of jenkins http://localhost:8877 by default
+    '''
 
     ret = {
         'name': name,
@@ -20,25 +31,22 @@ def plugin_installed(name,
         'comment': ''
     }
 
-    current_state = __salt__['jenkins.current_state'](name,version,jenkins_url)
-    if current_state:
+    current_state = __salt__['jenkins.plugin_installed'](name,version,jenkins_url)
+    if current_state['result']:
         ret['result']  = True
-        ret['comment'] = 'System already in the correct state'
+        ret['comment'] = 'Plugin already installed'
         return ret
     else:
-        new_state = __salt__['jenkins.install_plugin'](name,version,jenkins_url)
-        if new_state:
-            log.debug("Jenkins install started, did it succeed?...")
-            for attempt in range(0,4):
-                time.sleep(10)
-                new_state = __salt__['jenkins.current_state'](name,version,jenkins_url)
-                if new_state:
-                    ret['result']  = True
-                    ret['comment'] = 'Triggered Jenkins plugins install'
-                    return ret
-            ret['result'] = False
-            ret['comment'] = 'Timed out waiting for jenkins to install the plugin'
-            return ret
-
-
-    return ret
+        if current_state['version'] is not None:
+            ret['comment'] = 'Plugin installed but wrong version currently {0}'.format(current_state['version'])
+        else:
+            new_state = __salt__['jenkins.install_plugin'](name,version,jenkins_url)
+            if new_state['result']:
+                log.debug("Jenkins plugin installed successfully")
+                ret['result'] = True
+                ret['comment'] = "Successfully installed {0}: v{1}".format(name,version)
+                ret['changes'] = {
+                    'old': current_state['version'],
+                    'new': new_state['version'] 
+                }
+        return ret
