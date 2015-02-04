@@ -19,9 +19,11 @@ It's good to extend `client_max_body_size` for nginx to allow for plugins instal
 
 
 jenkins:
-  email: jenkins@localhost
-  name: Your Jenkins
-
+  git:
+    email: jenkins@localhost
+    name: Your Jenkins
+  optional_groups:
+    - docker
 
 apps:
   jenkins:

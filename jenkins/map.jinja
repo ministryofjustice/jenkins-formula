@@ -3,7 +3,8 @@
         'git': {
             'email': 'jenkins@localhost',
             'name': 'Your humble Jenkins',
-        }
+        },
+        'optional_groups': [],
     },
     'default': 'Debian',
 }, merge=salt['pillar.get']('jenkins', {})) %}
