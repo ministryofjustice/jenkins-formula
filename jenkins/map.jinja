@@ -8,4 +8,12 @@
     },
     'default': 'Debian',
 }, merge=salt['pillar.get']('jenkins', {})) %}
+{% set deploy = salt['grains.filter_by']({
+    'Debian': {
+        'ssh': {
+          'key_type': 'id_rsa',
+        },
+    },
+    'default': 'Debian',
+}, merge=salt['pillar.get']('deploy', {})) %}
 

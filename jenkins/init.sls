@@ -1,4 +1,4 @@
-{% from "jenkins/map.jinja" import jenkins with context %}
+{% from "jenkins/map.jinja" import jenkins, deploy with context %}
 include:
   - .repo
   - nginx
@@ -85,8 +85,8 @@ jenkins:
     - require:
       - user: jenkins
 
-
-/srv/jenkins/.ssh/{{ pillar.deploy.ssh.key_type }}:
+{% if "privkey" in deploy.ssh and deploy.ssh.privkey %}
+/srv/jenkins/.ssh/{{ deploy.ssh.key_type }}:
   file.managed:
     - user: jenkins
     - group: jenkins
@@ -95,6 +95,7 @@ jenkins:
     - require:
       - user: jenkins
       - file: /srv/jenkins/.ssh
+{% endif %}
 
 
 ssh_github_jenkins:

@@ -2,12 +2,12 @@ jenkins
 =======
 
 jenkins module that:
+ - Adds the upstream Jenkins apt package repo and signing key
  - installs jenkins
  - preconfigures github server key
- - adds ssh deploy key to jenkins user
- - configures git user & email
- - sets up vhost for jenkins
- - pulls in jenkins pkg repo configuration
+ - (optionally) adds ssh deploy key to jenkins user
+ - configures git to have a user & email info
+ - sets up vhost for jenkins using nginx
 
 
 pillar example
@@ -49,11 +49,3 @@ deploy:
 
 
 ```
-
-
-extending jenkins
------------------
-
-Usually you will want your own set of packages pre-installed on jenkins.
-To do so, just overwrite `jenkins/deps.sls` in your main `file_roots` folder.
-See salt docs [file_roots](http://docs.saltstack.com/en/latest/ref/file_server/file_roots.html)
