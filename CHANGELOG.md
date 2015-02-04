@@ -1,6 +1,7 @@
 ## Version 1.0.6
 
 * Enable jenkins user to be added to other groups
+* Add metadata.yml for next salt-shaker
 
 ## Version 1.0.5
 
