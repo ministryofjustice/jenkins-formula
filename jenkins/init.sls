@@ -16,7 +16,7 @@ jenkins:
     - shell: /bin/bash
     - makedirs: True
 {% if jenkins.optional_groups %}
-    - optional_groups: {{jenkins.optional_groups}}
+    - optional_groups: {{ jenkins.optional_groups|yaml }}
 {% endif %}
   pkg:
     - installed
