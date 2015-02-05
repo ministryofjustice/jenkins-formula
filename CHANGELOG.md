@@ -1,8 +1,10 @@
-## Unreleased
+## Version 1.1.0
 
 * Don't require a deploy SSH private key in the pillar
 * Change default webroot where Jenkins unpacks the WAR to be under /var/cache,
   not /var/run. Configurable via the `jenkins:cache_dir` pillar setting
+* Fully functional Vagrant dev environment
+* Jenkins Plugin salt state/module
 
 ## Version 1.0.6
 
