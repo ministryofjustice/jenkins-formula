@@ -1,8 +1,10 @@
 {% from "jenkins/map.jinja" import jenkins, deploy with context %}
 include:
+  - repos
   - .repo
   - nginx
   - logstash.beaver
+  - .plugins
 
 jenkins_deps:
   pkg.installed:
@@ -108,32 +110,21 @@ ssh_github_jenkins:
       - user: jenkins
       - file: /srv/jenkins/.ssh
 
-
-{% set appslug = 'jenkins' %}
-
-/etc/nginx/conf.d/{{appslug}}.conf:
+/etc/nginx/conf.d/jenkins.conf:
   file.managed:
-    - source: salt://nginx/templates/vhost-proxy.conf
+    - template: jinja
+    - source: salt://jenkins/templates/default/jenkins-proxy.conf
     - user: root
     - group: root
     - mode: 644
-    - template: jinja
     - watch_in:
       - service: nginx
     - require:
-      - user: {{appslug}}
+      - user: jenkins
       - pkg: nginx
-    - context:
-      appslug: {{appslug}}
-      server_name: '{{appslug}}.*'
-      proxy_to: localhost:8877
-
-{% from 'nginx/lib.sls' import nginx_basic_auth with context %}
-{{ nginx_basic_auth(appslug) }}
-
 
 {% from 'logstash/lib.sls' import logship with context %}
-{{ logship(appslug+'-access', '/var/log/nginx/'+appslug+'.access.json', 'nginx', ['nginx', appslug, 'access'], 'rawjson') }}
-{{ logship(appslug+'-error',  '/var/log/nginx/'+appslug+'.error.log', 'nginx', ['nginx', appslug, 'error'], 'json') }}
+{{ logship('jenkins-access', '/var/log/nginx/jenkins.access.json', 'nginx', ['nginx', 'jenkins', 'access'], 'rawjson') }}
+{{ logship('jenkins-error',  '/var/log/nginx/jenkins.error.log', 'nginx', ['nginx', 'jenkins', 'error'], 'json') }}
 
 {{ logship('jenkins',  '/var/log/jenkins/jenkins.log', 'jenkins', ['jenkins', ], 'json') }}
