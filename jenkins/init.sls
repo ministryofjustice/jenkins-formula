@@ -1,6 +1,6 @@
 include:
   - repos
-  - nginx
-  - logstash.beaver
+  - .proxy
   - .server
   - .plugins
+  - .logshipping
