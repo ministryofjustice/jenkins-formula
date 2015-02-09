@@ -6,7 +6,5 @@
     - name: {{plugin}}
 {% if version %}
     - version: '{{version}}'
-    - require:
-      - service: jenkins
 {% endif %}
 {% endfor %}

@@ -36,10 +36,6 @@ Vagrant.configure("2") do |config|
       v.name = "jenkins"
     end
 
-    node.vm.provider "vmware_fusion" do |v|
-      v.vmx["memsize"] = "1024"
-    end
-
     node.vm.provision :salt do |salt|
       salt.verbose = true
       salt.minion_config = "vagrant/salt/minion"

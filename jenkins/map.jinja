@@ -1,6 +1,10 @@
 {% set jenkins = salt['grains.filter_by']({
     'Debian': {
-        'plugins': {},
+        'plugins': {
+            'ansicolor': '0.4.1',
+            'git': None,
+            'hipchat': '0.1.8'
+        },
         'nginx' : {
             'upstream': 'localhost:8877',
             'listen': '80',
