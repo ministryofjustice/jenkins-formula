@@ -1,5 +1,6 @@
-sudo:
+sudo-pkg-for-jenkins:
   pkg:
+    - name: sudo
     - installed
 
 jenkins-sudoersd:
