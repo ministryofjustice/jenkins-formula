@@ -1,3 +1,8 @@
+## Version 1.1.1
+
+* Add slave state for slaves, which distributes ssh public key, etc.
+* Add sudoers.d entry for jenkins.
+
 ## Version 1.1.0
 
 * Don't require a deploy SSH private key in the pillar
