@@ -71,9 +71,10 @@ ssh_github_jenkins:
       - user: jenkins
       - file: /srv/jenkins/.ssh
 
-jenkins:
+jenkins-installation:
   pkg:
     - installed
+    - name: jenkins
     - require:
       - user: jenkins
       - file: /etc/default/jenkins
@@ -81,8 +82,8 @@ jenkins:
       - service: jenkins
   service:
     - running
+    - name: jenkins
     - enable: True
-
 
 /etc/default/jenkins:
   file.managed:
