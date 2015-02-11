@@ -1,3 +1,5 @@
+{% from "jenkins/map.jinja" import jenkins, deploy with context %}
+
 /srv/jenkins/.ssh:
   file.directory:
     - user: jenkins
