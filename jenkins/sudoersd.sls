@@ -1,3 +1,7 @@
+sudo:
+  pkg:
+    - installed
+
 jenkins-sudoersd:
   file:
     - name: /etc/sudoers.d/jenkins

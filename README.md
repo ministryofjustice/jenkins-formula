@@ -8,7 +8,7 @@ jenkins module that:
  - (optionally) adds ssh deploy key to jenkins user
  - configures git to have a user & email info
  - sets up vhost for jenkins using nginx
-
+ - sets up a slave with the slave state file
 
 pillar example
 --------------
