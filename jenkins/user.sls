@@ -1,3 +1,4 @@
+{% from "jenkins/map.jinja" import jenkins, deploy with context %}
 jenkins:
   user.present:
     - home: /srv/jenkins
