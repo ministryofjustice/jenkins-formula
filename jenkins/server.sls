@@ -1,7 +1,6 @@
 {% from "jenkins/map.jinja" import jenkins, deploy with context %}
 include:
   - .repo
-  - .sudoersd
 
 jenkins_deps:
   pkg.installed:
