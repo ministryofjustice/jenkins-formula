@@ -9,6 +9,9 @@ jenkins module that:
  - configures git to have a user & email info
  - sets up vhost for jenkins using nginx
 
+optional modules that:
+ - sets up a slave with the slave state file
+ - set up a /etc/sudoers.d/jenkins with the sudoersd state file
 
 pillar example
 --------------
