@@ -1,10 +1,12 @@
+{% from "jenkins/map.jinja" import jenkinsuser, deploy with context %}
+
 jenkins:
   user.present:
     - home: /srv/jenkins
     - shell: /bin/bash
     - makedirs: True
-{% if jenkins.optional_groups %}
-    - optional_groups: {{ jenkins.optional_groups|yaml }}
+{% if jenkinsuser.optional_groups %}
+    - optional_groups: {{ jenkinsuser.optional_groups|yaml }}
 {% endif %}
 
 /srv/jenkins/.gitconfig:
