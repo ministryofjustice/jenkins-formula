@@ -1,3 +1,8 @@
+## Unreleased
+
+* Optional module: sets up a slave with the slave state file
+* Optional module: set up a /etc/sudoers.d/jenkins with the sudoersd state file
+
 ## Version 1.1.0
 
 * Don't require a deploy SSH private key in the pillar
