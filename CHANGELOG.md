@@ -1,4 +1,4 @@
-## Unreleased
+## Version 1.1.1
 
 * Optional module: sets up a slave with the slave state file
 * Optional module: set up a /etc/sudoers.d/jenkins with the sudoersd state file
