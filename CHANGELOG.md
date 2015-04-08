@@ -1,7 +1,8 @@
-## Version 1.x.x
+## Version 1.2.0
 
 * Add plugins.sls so you can specify plugins to install in the pillar.
 * Add safe restart on plugin install/change
+* Add jobs.sls so you can manage jobs (that sit in a different repo)
 
 ## Version 1.1.2
 
