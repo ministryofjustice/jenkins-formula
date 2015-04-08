@@ -8,6 +8,7 @@ jenkins module that:
  - (optionally) adds ssh deploy key to jenkins user
  - configures git to have a user & email info
  - sets up vhost for jenkins using nginx
+ - installs plugins
 
 optional modules that:
  - sets up a slave with the slave state file
@@ -27,6 +28,9 @@ jenkins:
     name: Your Jenkins
   optional_groups:
     - docker
+  plugins:
+    - git
+    - hipchat
 
 apps:
   jenkins:
