@@ -3,6 +3,7 @@ include:
   - .repo
   - .user
   - .git
+  - .plugins
 
 jenkins:
   pkg:
