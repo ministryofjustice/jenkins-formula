@@ -1,7 +1,7 @@
 {% from "jenkins/map.jinja" import jenkins, deploy with context %}
 
-{% if jenkins.jobs_repo %}
-/tmp/{{ jenkins.jobs_repo|yaml }}:
+{% if jenkins.jobs.repo_location %}
+/tmp/{{ jenkins.jobs.repo_location }}:
   file.directory:
     - user: jenkins
     - group: jenkins
