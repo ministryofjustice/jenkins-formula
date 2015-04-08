@@ -1,6 +1,7 @@
 ## Version 1.x.x
 
 * Add plugins.sls so you can specify plugins to install in the pillar.
+* Add safe restart on plugin install/change
 
 ## Version 1.1.2
 
