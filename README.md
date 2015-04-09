@@ -11,6 +11,7 @@ jenkins module that:
  - installs plugins
 
 optional modules that:
+ - manages jobs held in an external git repo
  - sets up a slave with the slave state file
  - set up a /etc/sudoers.d/jenkins with the sudoersd state file
 
@@ -31,6 +32,8 @@ jenkins:
   plugins:
     - git
     - hipchat
+  jobs:
+    - repo_location: 'https://github.com/ministryofjustice/jenkins-jobs.git'
 
 apps:
   jenkins:
