@@ -1,6 +1,9 @@
 {% set jenkins = salt['grains.filter_by']({
     'Debian': {
         'plugins': [],
+        'jobs': {
+            'repo_location': '',
+        },
         'nginx' : {
             'upstream': 'localhost:8877',
             'listen': '80',
