@@ -50,3 +50,26 @@ def plugin_installed(name,
                     'new': new_state['version'] 
                 }
         return ret
+
+def ensure_system_user_apikey_grain(name, grain_name='jenkins:system_user_apikey'):
+    ret = {
+        'name': name,
+        'changes': {},
+        'result': False,
+        'comment': ''
+    }
+    if __salt__['grains.get')(grain_name):
+        # Already done. No changes
+        ret['result'] = True
+        return ret
+
+    # Do the beautiful soup dance.
+    # api_key = xxx
+
+    __salt__['grains.setval'](grain_name, api_key)
+    ret['changes'] = {
+        'old': None,
+        'new': api_key
+    }
+    ret['comment'] = "API fetch fetched and stored to grain {0}".format(grain_name)
+    return ret;
