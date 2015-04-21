@@ -6,12 +6,8 @@ BeautifulSoup:
     - require:
       - pkg: python-pip
 
-
-execute_custom_grain:
-  cmd.run:
-  - user: jenkins
-  - name: python /srv/salt/_grains/sysuser.py
-  - stateful: True
+jenkins_system_user_api_captured:
+  jenkins.ensure_system_user_apikey_grain:
   - require:
     - service: jenkins
     - pip: BeautifulSoup

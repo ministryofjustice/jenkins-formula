@@ -9,6 +9,56 @@ import salt.utils
 
 log = logging.getLogger(__name__)
 
+def ensure_system_user_apikey_grain(name,
+            grain_name='jenkins_system_user_token',
+            jenkins_url = "http://127.0.0.1:8877/user/system/configure"):
+    '''
+    Get the jenkins SYSTEM user's API token and keep it in a grain to
+    be able to use it to call the api after enabling auth.
+
+    name
+        Name of the salt state
+    grain_name
+        Name for the newly created grain
+    jenkins_url
+        Jenkins URL where the token is found
+    '''
+    import requests
+    from BeautifulSoup import BeautifulSoup
+
+    ret = {
+        'name': name,
+        'changes': {},
+        'result': False,
+        'comment': ''
+    }
+
+    if __salt__['grains.get'](grain_name):
+        # Already exists, return its
+        ret['result'] = True
+        return ret
+
+    try:
+        response = requests.get(jenkins_url).text
+        soup = BeautifulSoup(response)
+        api_key = soup.find(id="apiToken")['value']
+    except TypeError:
+        ret['result'] = False
+        ret['comment'] = "Couldn't find the key apiToken in {}".format(jenkins_url)
+        return ret
+    except Exception as e:
+        ret['result'] = False
+        ret['comment'] = e.message
+        return ret
+
+    __salt__['grains.setval'](grain_name, api_key)
+    ret['changes'] = { 'old': None, 'new': api_key }
+    ret['comment'] = "API token fetched and stored to grain {0}".format(grain_name)
+    ret['result'] = True
+
+    return ret
+
+
 def plugin_installed(name,
             version=None,
             jenkins_url="http://localhost:8877"):
