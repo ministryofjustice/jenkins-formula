@@ -4,6 +4,9 @@
 {{plugin}}:
   jenkins.plugin_installed:
     - name: {{plugin}}
+{% if salt['grains.get']('jenkins_system_user_token', None) != None %}
+    - jenkins_url: "http://SYSTEM:{{ grains['jenkins_system_user_token'] }}@localhost:8877"
+{% endif %}
     - require:
       - cmd: /srv/jenkins/update-available-plugins.sh
       - service: jenkins
