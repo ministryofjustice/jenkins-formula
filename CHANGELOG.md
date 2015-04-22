@@ -3,6 +3,7 @@
 * Add plugins.sls so you can specify plugins to install in the pillar.
 * Add safe restart on plugin install/change
 * Add jobs.sls so you can manage jenkins jobs via salt
+* Add sysuser sls to cache the token for jenkins's SYSTEM user
 
 ## Version 1.1.1
 
