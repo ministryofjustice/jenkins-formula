@@ -20,7 +20,7 @@ check-modifications:
 revert-all:
   cmd.wait:
     - user: jenkins
-    - name: git checkout .
+    - name: git reset --hard origin/master
     - cwd: /srv/jenkins/jobs/
     - watch_in:
       - cmd: jenkins-safe-restart
