@@ -1,3 +1,7 @@
+## Version 1.2.2
+
+* Install python-pip package
+
 ## Version 1.2.1
 
 * Add sysuser sls to cache the token for jenkins's SYSTEM user
