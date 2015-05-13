@@ -6,6 +6,9 @@
 # make it a grain so it can be used in other sls files.
 #
 
+python-pip:
+  pkg.installed
+
 BeautifulSoup:
   pip.installed:
     - version: => 3.2.1
