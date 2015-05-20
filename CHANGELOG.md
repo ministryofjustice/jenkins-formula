@@ -1,3 +1,7 @@
+## Unreleased
+
+* Add modifiable java_args parameter (used for tuning memory usage in jenkins' JVM)
+
 ## Version 1.2.3
 
 * Rename python-pip ID to stop conflicts with python-formula
