@@ -6,8 +6,10 @@
 # make it a grain so it can be used in other sls files.
 #
 
-python-pip:
-  pkg.installed
+jenkins_pkg_requirements:
+  pkg.installed:
+    - pkgs:
+      - python-pip
 
 BeautifulSoup:
   pip.installed:
