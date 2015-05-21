@@ -1,3 +1,7 @@
+## Version 1.2.3
+
+* Rename python-pip ID to stop conflicts with python-formula
+
 ## Version 1.2.2
 
 * Install python-pip package
