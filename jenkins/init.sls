@@ -3,3 +3,4 @@ include:
   - .proxy
   - .server
   - .logshipping
+  - .hipchat
