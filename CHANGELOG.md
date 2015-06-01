@@ -1,3 +1,7 @@
+## Unreleased
+
+* Add jenkins hipchat plugin pillar support
+
 ## Version 1.2.4
 
 * Add modifiable java_args parameter (used for tuning memory usage in jenkins' JVM)
