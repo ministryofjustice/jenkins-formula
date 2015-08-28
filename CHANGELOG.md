@@ -1,4 +1,4 @@
-## Unreleased
+## Version 1.2.5
 
 * Add jenkins hipchat plugin pillar support
 * Fix installing of python modules (BeautifulSoup) pip package under more
