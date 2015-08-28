@@ -1,6 +1,8 @@
 ## Unreleased
 
 * Add jenkins hipchat plugin pillar support
+* Fix installing of python modules (BeautifulSoup) pip package under more
+  recent versions of python-formula
 
 ## Version 1.2.4
 
