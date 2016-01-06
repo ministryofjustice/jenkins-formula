@@ -1,3 +1,7 @@
+## Version 1.2.6
+
+* Make jobs sync work with fresh instance
+
 ## Version 1.2.5
 
 * Add jenkins hipchat plugin pillar support
