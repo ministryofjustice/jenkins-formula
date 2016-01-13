@@ -3,6 +3,8 @@
 jenkins-user:
   user.present:
     - name: jenkins
+    - uid: 251
+    - system: True
     - home: /srv/jenkins
     - shell: /bin/bash
     - makedirs: True
